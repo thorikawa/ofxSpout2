@@ -32,6 +32,8 @@
 */
 #pragma once
 
+#ifdef _WIN32
+
 #ifndef __SpoutSharedMemory_ // standard way as well
 #define __SpoutSharedMemory_
 
@@ -76,5 +78,7 @@ private:
 	const char*	m_pName;
 	int			m_size;
 };
+
+#endif
 
 #endif

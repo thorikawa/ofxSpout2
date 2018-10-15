@@ -63,6 +63,8 @@
 
 */
 
+#ifdef _WIN32
+
 #ifndef __spoutMemoryShare__
 #define __spoutMemoryShare__
 
@@ -106,3 +108,4 @@ class SPOUT_DLLEXP spoutMemoryShare {
 
 #endif
 
+#endif

@@ -59,6 +59,9 @@
 		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 */
+
+#ifdef _WIN32
+
 #include "spoutSenderNames.h"
 #include <assert.h>
 
@@ -960,4 +963,4 @@ bool spoutSenderNames::SenderDebug(const char *Sendername, int size)
 	return true;
 }
 
-
+#endif

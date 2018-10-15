@@ -55,6 +55,9 @@
 		OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #pragma once
+
+#ifdef _WIN32
+
 #ifndef __spoutGLextensions__	// standard way as well
 #define __spoutGLextensions__
 
@@ -313,3 +316,6 @@ bool loadSwapExtensions();
 bool loadPBOextensions();
 
 #endif
+
+#endif
+

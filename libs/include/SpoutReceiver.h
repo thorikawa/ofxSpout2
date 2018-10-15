@@ -27,6 +27,8 @@
 */
 #pragma once
 
+#ifdef _WIN32
+
 #ifndef __SpoutReceiver__
 #define __SpoutReceiver__
 
@@ -82,5 +84,7 @@ protected :
 	// Spout spout;
 
 };
+
+#endif
 
 #endif

@@ -49,6 +49,8 @@
 
 */
 
+#ifdef _WIN32
+
 #include "spoutDirectX.h"
 
 spoutDirectX::spoutDirectX() {
@@ -743,4 +745,4 @@ IDXGIAdapter* spoutDirectX::GetAdapterPointer(int index)
 }
 
 
-
+#endif

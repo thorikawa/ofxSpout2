@@ -35,6 +35,9 @@
 
  */
 #pragma once
+
+#ifdef _WIN32
+
 #ifndef __spoutSenderNames__ // standard way as well
 #define __spoutSenderNames__
 
@@ -174,5 +177,7 @@ protected:
 		std::unordered_map<std::string, SpoutSharedMemory*>*	m_senders;
 
 };
+
+#endif
 
 #endif

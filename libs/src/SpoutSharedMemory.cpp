@@ -34,6 +34,8 @@
 
 */
 
+#ifdef _WIN32
+
 #include "SpoutSharedMemory.h"
 #include <assert.h>
 #include <string>
@@ -271,3 +273,5 @@ void SpoutSharedMemory::Debug()
 	}
 	*/
 }
+
+#endif

@@ -28,6 +28,8 @@
 */
 #pragma once
 
+#ifdef _WIN32
+
 #ifndef __SpoutSender__
 #define __SpoutSender__
 
@@ -77,5 +79,7 @@ protected :
 	// Spout spout;
 
 };
+
+#endif
 
 #endif

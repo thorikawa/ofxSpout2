@@ -29,6 +29,9 @@
 
 */
 #pragma once
+
+#ifdef _WIN32
+
 #ifndef __SpoutSDK__
 #define __SpoutSDK__
 
@@ -204,4 +207,4 @@ class SPOUT_DLLEXP Spout {
 
 #endif
 
-
+#endif

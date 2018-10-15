@@ -3,6 +3,9 @@
 #pragma once
 
 #include "ofMain.h"
+
+#ifdef TARGET_WIN32
+
 #include "Spout.h"
 
 namespace ofxSpout2 {
@@ -26,3 +29,5 @@ namespace ofxSpout2 {
 
 	};
 }
+
+#endif

@@ -89,6 +89,8 @@
 
 */
 
+#ifdef _WIN32
+
 #include "spoutGLDXinterop.h"
 
 spoutGLDXinterop::spoutGLDXinterop() {
@@ -1958,3 +1960,4 @@ bool spoutGLDXinterop::WriteDwordToRegistry(DWORD dwValue, const char *subkey, c
 
 }
 
+#endif

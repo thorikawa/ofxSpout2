@@ -2,6 +2,8 @@
 
 #include "ofxSpout2Receiver.h"
 
+#ifdef TARGET_WIN32
+
 using namespace ofxSpout2;
 
 Receiver::Receiver() {
@@ -55,3 +57,5 @@ void Receiver::exit() {
 	if(mReceiver != NULL && mbInitialized)
 		mReceiver->ReleaseReceiver();
 }
+
+#endif

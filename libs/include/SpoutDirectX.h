@@ -29,6 +29,9 @@
 
 */
 #pragma once
+
+#ifdef _WIN32
+
 #ifndef __spoutDirectX__ 
 #define __spoutDirectX__
 
@@ -92,3 +95,6 @@ class SPOUT_DLLEXP spoutDirectX {
 };
 
 #endif
+
+#endif
+

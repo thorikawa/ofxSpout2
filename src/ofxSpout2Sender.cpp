@@ -1,5 +1,7 @@
 #include "ofxSpout2Sender.h"
 
+#ifdef TARGET_WIN32
+
 using namespace ofxSpout2;
 
 Sender::Sender() {
@@ -103,3 +105,5 @@ void Sender::exit()
 	}
 	spoutSenderList.clear();
 }
+
+#endif

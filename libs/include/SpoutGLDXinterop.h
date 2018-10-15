@@ -33,6 +33,9 @@
 
 */
 #pragma once
+
+#ifdef _WIN32
+
 #ifndef __spoutGLDXinterop__ // standard way as well
 #define __spoutGLDXinterop__
 
@@ -198,3 +201,6 @@ protected:
 };
 
 #endif
+
+#endif
+

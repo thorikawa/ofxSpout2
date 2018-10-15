@@ -1,3 +1,5 @@
+#ifdef _WIN32
+
 #include "spoutMemoryShare.h"
 
 /*
@@ -408,4 +410,4 @@ bool spoutMemoryShare::ReadFromMemory(unsigned char *buffer, int numBytes, int o
 
 
 
-
+#endif
