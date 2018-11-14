@@ -13,6 +13,8 @@ namespace ofxSpout2 {
 
 		void setup();
 
+		void set(std::string senderName);
+
 		// show the panel for possible senders and select one
 		void showSenders();
 
@@ -24,10 +26,22 @@ namespace ofxSpout2 {
 		// call in ofApp::exit()
 		void exit();
 
+		void bind();
+
+		void unbind();
+
+		float getWidth() {
+			return mTexture.getWidth();
+		}
+
+		float getHeight() {
+			return mTexture.getHeight();
+		}
+
 	private:
 		SpoutReceiver *mReceiver;
 		bool mbInitialized; ;
-		char SenderName[256];
+		char senderName[256];
 		ofTexture mTexture;
 	};
 }
