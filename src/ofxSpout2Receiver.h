@@ -15,6 +15,11 @@ namespace ofxSpout2 {
 
 		void set(std::string senderName);
 
+		string getSenderName() {
+			string s(senderName);
+			return s;
+		}
+
 		// show the panel for possible senders and select one
 		void showSenders();
 

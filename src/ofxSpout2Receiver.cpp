@@ -18,7 +18,7 @@ void Receiver::setup() {
 void Receiver::set(std::string senderNameStr) {
 	std::char_traits<char>::copy(senderName, senderNameStr.c_str(), senderNameStr.size() + 1);
 	unsigned int width, height;
-	if (mReceiver->CreateReceiver(senderName, width, height, true)) {
+	if (mReceiver->CreateReceiver(senderName, width, height, false)) {
 		mTexture.allocate(width, height, GL_RGBA);
 		mbInitialized = true;
 		return;
