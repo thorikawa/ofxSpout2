@@ -30,6 +30,8 @@ namespace ofxSpout2 {
 
 		void unbind();
 
+		void draw(float x, float y);
+
 		float getWidth() {
 			return mTexture.getWidth();
 		}

@@ -59,6 +59,10 @@ void Receiver::unbind() {
 	mTexture.unbind();
 }
 
+void Receiver::draw(float x, float y) {
+	mTexture.draw(x, y);
+}
+
 void Receiver::exit() {
 	if(mReceiver != NULL && mbInitialized)
 		mReceiver->ReleaseReceiver();
