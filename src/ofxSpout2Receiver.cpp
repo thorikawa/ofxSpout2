@@ -33,7 +33,7 @@ void Receiver::showSenders() {
 }
 
 void Receiver::updateTexture() {
-	assert(mTexture.isAllocated() && "Texture not allocated but receiver initialized!");
+	if (!mTexture.isAllocated()) return;
 	unsigned int preWidth = mTexture.getWidth();
 	unsigned int preHeight = mTexture.getHeight();
 
@@ -52,14 +52,17 @@ void Receiver::updateTexture() {
 }
 
 void Receiver::bind() {
+	if (!mTexture.isAllocated()) return;
 	mTexture.bind();
 }
 
 void Receiver::unbind() {
+	if (!mTexture.isAllocated()) return;
 	mTexture.unbind();
 }
 
 void Receiver::draw(float x, float y) {
+	if (!mTexture.isAllocated()) return;
 	mTexture.draw(x, y);
 }
 
