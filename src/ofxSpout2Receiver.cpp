@@ -17,6 +17,10 @@ void Receiver::setup() {
 
 void Receiver::set(std::string senderNameStr) {
 	std::char_traits<char>::copy(senderName, senderNameStr.c_str(), senderNameStr.size() + 1);
+	init();
+}
+
+void Receiver::init() {
 	unsigned int width, height;
 	if (mReceiver->CreateReceiver(senderName, width, height, false)) {
 		mTexture.allocate(width, height, GL_RGBA);
@@ -24,7 +28,7 @@ void Receiver::set(std::string senderNameStr) {
 		return;
 	}
 	else {
-		ofLogWarning("ofxSpout", "No sender detected");
+		// ofLogWarning("ofxSpout", "No sender detected");
 	}
 }
 

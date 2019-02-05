@@ -15,9 +15,15 @@ namespace ofxSpout2 {
 
 		void set(std::string senderName);
 
+		void Receiver::init();
+
 		string getSenderName() {
 			string s(senderName);
 			return s;
+		}
+
+		bool isInitialized() {
+			return mbInitialized;
 		}
 
 		// show the panel for possible senders and select one
