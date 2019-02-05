@@ -41,7 +41,7 @@ void Receiver::updateTexture() {
 	unsigned int preWidth = mTexture.getWidth();
 	unsigned int preHeight = mTexture.getHeight();
 
-	unsigned int width, height;
+	unsigned int width = preWidth, height = preHeight;
 	if (mReceiver->ReceiveTexture(senderName, width, height, mTexture.getTextureData().textureID, mTexture.getTextureData().textureTarget)) {
 		if (width != preWidth || height != preHeight) { // in case of size change, reallocate
 			mTexture.allocate(width, height, GL_RGBA);
