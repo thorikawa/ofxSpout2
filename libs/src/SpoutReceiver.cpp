@@ -1,4 +1,4 @@
-//
+﻿//
 //		SpoutReceiver
 //
 //		Wrapper class so that a receiver object can be created independent of a sender
@@ -15,10 +15,21 @@
 //		08.02.15	- Changed default texture format for ReceiveImage in header to GL_RGBA
 //		29.05.15	- Included SetAdapter for multiple adapters - Franz Hildgen.
 //		02.06.15	- Added GetAdapter, GetNumAdapters, GetAdapterName
+//		24.08.15	- Added GetHostPath to retrieve the path of the host that produced the sender
+//		15.09.15	- Removed SetMemoryShareMode for 2.005 - now done globally by SpoutDirectX.exe
+//		10.10.15	- Added transition flag to set invert true for 2.004 rather than default false for 2.005
+//					- currently not used - see SpoutSDK.cpp CreateSender
+//		14.11.15	- changed functions to "const char *" where required
+//		18.11.15	- added CheckReceiver so that DrawSharedTexture can be used by a receiver
+//		18.06.16	- Add invert to ReceiveImage
+//		17.09.16	- removed CheckSpout2004() from constructor
+//		13.01.17	- Add SetCPUmode, GetCPUmode, SetBufferMode, GetBufferMode
+//					- Add HostFBO arg to DrawSharedTexture
+//		15.01.17	- Add GetShareMode, SetShareMode
 //
 // ====================================================================================
 /*
-		Copyright (c) 2014-2015, Lynn Jarvis. All rights reserved.
+		Copyright (c) 2014-2017, Lynn Jarvis. All rights reserved.
 
 		Redistribution and use in source and binary forms, with or without modification, 
 		are permitted provided that the following conditions are met:
@@ -41,9 +52,6 @@
 		OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-
-#ifdef _WIN32
-
 #include "SpoutReceiver.h"
 
 SpoutReceiver::SpoutReceiver()
@@ -67,11 +75,23 @@ bool SpoutReceiver::ReceiveTexture(char* name, unsigned int &width, unsigned int
 
 
 //---------------------------------------------------------
-bool SpoutReceiver::ReceiveImage(char* name, unsigned int &width, unsigned int &height, unsigned char* pixels, GLenum glFormat, GLuint HostFBO)
+bool SpoutReceiver::ReceiveImage(char* Sendername, 
+								 unsigned int &width, 
+								 unsigned int &height, 
+								 unsigned char* pixels, 
+								 GLenum glFormat, 
+								 bool bInvert,
+								 GLuint HostFBO)
 {
-	return spout.ReceiveImage(name, width, height, pixels, glFormat, HostFBO);
+	return spout.ReceiveImage(Sendername, width, height, pixels, glFormat, bInvert, HostFBO);
 }
 
+
+//---------------------------------------------------------
+bool SpoutReceiver::CheckReceiver(char* name, unsigned int &width, unsigned int &height, bool &bConnected)
+{
+	return spout.CheckReceiver(name, width, height, bConnected);
+}
 
 //---------------------------------------------------------
 bool SpoutReceiver::GetImageSize(char* name, unsigned int &width, unsigned int &height, bool &bMemoryMode)
@@ -114,9 +134,9 @@ int  SpoutReceiver::GetSenderCount()
 }
 
 //---------------------------------------------------------
-bool SpoutReceiver::DrawSharedTexture(float max_x, float max_y, float aspect, bool bInvert)
+bool SpoutReceiver::DrawSharedTexture(float max_x, float max_y, float aspect, bool bInvert, GLuint HostFBO)
 {
-	return spout.DrawSharedTexture(max_x, max_y, aspect, bInvert);
+	return spout.DrawSharedTexture(max_x, max_y, aspect, bInvert, HostFBO);
 }
 
 
@@ -134,7 +154,7 @@ bool SpoutReceiver::GetActiveSender(char* Sendername)
 
 
 //---------------------------------------------------------
-bool SpoutReceiver::SetActiveSender(char* Sendername)
+bool SpoutReceiver::SetActiveSender(const char* Sendername)
 {
 	return spout.SetActiveSender(Sendername);
 }
@@ -154,16 +174,51 @@ bool SpoutReceiver::SelectSenderPanel(const char* message)
 }
 
 //---------------------------------------------------------
+bool SpoutReceiver::SetMemoryShareMode(bool bMem)
+{
+	return spout.SetMemoryShareMode(bMem);
+}
+
+//---------------------------------------------------------
 bool SpoutReceiver::GetMemoryShareMode()
 {
 	return spout.GetMemoryShareMode();
 }
 
+//---------------------------------------------------------
+bool SpoutReceiver::SetCPUmode(bool bCPU)
+{
+	return (spout.SetCPUmode(bCPU));
+}
 
 //---------------------------------------------------------
-bool SpoutReceiver::SetMemoryShareMode(bool bMemory)
+bool SpoutReceiver::GetCPUmode()
 {
-	return spout.SetMemoryShareMode(bMemory);
+	return (spout.GetCPUmode());
+}
+
+//---------------------------------------------------------
+int SpoutReceiver::GetShareMode()
+{
+	return (spout.GetShareMode());
+}
+
+//---------------------------------------------------------
+bool SpoutReceiver::SetShareMode(int mode)
+{
+	return (spout.SetShareMode(mode));
+}
+
+//---------------------------------------------------------
+void SpoutReceiver::SetBufferMode(bool bActive)
+{
+	spout.SetBufferMode(bActive);
+}
+
+//---------------------------------------------------------
+bool SpoutReceiver::GetBufferMode()
+{
+	return spout.GetBufferMode();
 }
 
 //---------------------------------------------------------
@@ -227,6 +282,13 @@ bool SpoutReceiver::GetAdapterName(int index, char *adaptername, int maxchars)
 	return spout.GetAdapterName(index, adaptername, maxchars);
 }
 
+// Get the path of the host that created the sender
+bool SpoutReceiver::GetHostPath(const char *sendername, char *hostpath, int maxchars)
+{
+	return spout.GetHostPath(sendername, hostpath, maxchars);
+}
+
+
 //---------------------------------------------------------
 bool SpoutReceiver::SetVerticalSync(bool bSync)
 {
@@ -238,5 +300,3 @@ int SpoutReceiver::GetVerticalSync()
 {
 	return spout.interop.GetVerticalSync();
 }
-
-#endif

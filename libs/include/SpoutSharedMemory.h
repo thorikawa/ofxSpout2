@@ -7,7 +7,7 @@
 	https://github.com/mbechard
 
 	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		Copyright (c) 2014-2015, Lynn Jarvis. All rights reserved.
+		Copyright (c) 2014-2017, Lynn Jarvis. All rights reserved.
 
 		Redistribution and use in source and binary forms, with or without modification, 
 		are permitted provided that the following conditions are met:
@@ -32,8 +32,6 @@
 */
 #pragma once
 
-#ifdef _WIN32
-
 #ifndef __SpoutSharedMemory_ // standard way as well
 #define __SpoutSharedMemory_
 
@@ -56,29 +54,30 @@ public:
 	~SpoutSharedMemory();
 
 
-	// Create a new memory segment, or attachs to an existing one
-	SpoutCreateResult	Create(const char* name, int size);
+	// Create a new memory segment, or attach to an existing one
+	SpoutCreateResult Create(const char* name, int size);
 
 	// Opens an existing one
-	bool	Open(const char* name);
-	void	Close();
+	bool Open(const char* name);
+	void Close();
 
 	// Returns the buffer
-	char*	Lock();
-	void	Unlock();
+	char* Lock();
+	void Unlock();
 
-	void	Debug();
+	void Debug();
+
 private:
-	char*	m_pBuffer;
-	HANDLE	m_hMap;
-	HANDLE	m_hMutex;
 
-	int		m_lockCount;
+	char*  m_pBuffer;
+	HANDLE m_hMap;
+	HANDLE m_hMutex;
+
+	int m_lockCount;
 
 	const char*	m_pName;
-	int			m_size;
-};
+	int m_size;
 
-#endif
+};
 
 #endif
